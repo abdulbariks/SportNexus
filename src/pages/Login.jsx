@@ -3,8 +3,10 @@ import { AuthContext } from "../contexts/AuthContext";
 import Swal from "sweetalert2";
 import { Link, Navigate, useLocation, useNavigate } from "react-router";
 import { Eye, EyeOff } from "lucide-react";
+import useTitle from "../hooks/useTitle";
 
 const Login = () => {
+  useTitle("Login | Room Lagbe");
   const navigate = useNavigate();
   const location = useLocation();
   const { googleLogin, logIn, user } = use(AuthContext);
@@ -25,10 +27,39 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate(`${"/"}`);
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
         console.log(error);
+      });
+  };
+
+  const handleUserLogin = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    // console.log(email, password);
+
+    logIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "User Login Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(`${location.state ? location.state : "/"}`);
+      })
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
       });
   };
 
@@ -42,9 +73,9 @@ const Login = () => {
       </h2>
       <p className="text-sm text-center text-gray-600">
         Don't have Account?
-        <Link to={"/signup"} className="focus:underline hover:underline">
+        <Link to={"/register"} className="focus:underline hover:underline">
           {" "}
-          SignUp Here
+          Register Here
         </Link>
       </p>
       <div className="my-6 space-y-4">
@@ -69,7 +100,7 @@ const Login = () => {
         <p className="px-3 text-gray-600">OR</p>
         <hr className="w-full text-gray-600" />
       </div>
-      <form className="space-y-8">
+      <form onSubmit={handleUserLogin} className="space-y-8">
         <div className="space-y-4">
           <div className="space-y-2">
             <label htmlFor="email" className="block text-sm">
