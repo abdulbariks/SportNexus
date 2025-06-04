@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <footer className="footer footer-horizontal footer-center bg-base-100 p-10">
       <aside>
-        <FcSportsMode size={32} />
+        <FcSportsMode size={48} />
         <p className="font-bold">SportNexus</p>
         <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
       </aside>
