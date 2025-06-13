@@ -1,8 +1,36 @@
-import React from "react";
+import React, { use } from "react";
 import { FcSportsMode } from "react-icons/fc";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
+import { AuthContext } from "../contexts/AuthContext";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const { user, logOut } = use(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Log Out Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
+      })
+      .catch(() => {
+        // console.log(error);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "LogOut Fail!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
+  };
   return (
     <div className="bg-base-100 shadow-sm">
       <div className="navbar w-11/12 mx-auto ">
@@ -34,6 +62,9 @@ const Navbar = () => {
               </li>
               <li>
                 <NavLink to={"/events"}>Events</NavLink>
+              </li>
+              <li>
+                <NavLink to={"/create-event"}>Create Event</NavLink>
               </li>
               <li>
                 <a>Profile</a>
@@ -69,6 +100,9 @@ const Navbar = () => {
               <NavLink to={"/events"}>Events</NavLink>
             </li>
             <li>
+              <NavLink to={"/create-event"}>Create Event</NavLink>
+            </li>
+            <li>
               <details>
                 <summary>Profile</summary>
                 <ul className="p-2">
@@ -87,41 +121,36 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end gap-5">
-          <div className="flex gap-5">
-            <NavLink to={"/login"}>Login</NavLink>
-            <NavLink to={"/register"}>Register</NavLink>
-          </div>
-          <div className="dropdown dropdown-end">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar"
-            >
-              <div className="w-10 rounded-full">
-                <img
-                  alt="Tailwind CSS Navbar component"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                />
-              </div>
+          {!user ? (
+            <div className="flex gap-5">
+              <NavLink to={"/login"}>Login</NavLink>
+              <NavLink to={"/register"}>Register</NavLink>
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-            >
-              <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
-              </li>
-              <li>
-                <a>Settings</a>
-              </li>
-              <li>
-                <a>Logout</a>
-              </li>
-            </ul>
-          </div>
+          ) : (
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 rounded-full">
+                  <img
+                    alt="Tailwind CSS Navbar component"
+                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              >
+                <li>{user.displayName}</li>
+                <li>
+                  <button onClick={handleLogOut}> Logout</button>
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </div>

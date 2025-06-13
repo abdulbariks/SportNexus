@@ -5,6 +5,9 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Error from "../pages/Error";
 import Events from "../pages/Events";
+import CreateEvent from "../pages/CreateEvent";
+import Loading from "../components/Loading";
+import EventDetails from "../pages/EventDetails";
 
 export const router = createBrowserRouter([
   {
@@ -12,7 +15,21 @@ export const router = createBrowserRouter([
     Component: MainLayout,
     children: [
       { index: true, Component: Home },
-      { path: "events", Component: Events },
+      {
+        path: "events",
+        hydrateFallbackElement: <Loading></Loading>,
+        loader: () => fetch("http://localhost:3000/events"),
+        Component: Events,
+      },
+      {
+        path: "/event-details/:id",
+        hydrateFallbackElement: <Loading></Loading>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/events/${params.id}`),
+        Component: EventDetails,
+      },
+
+      { path: "create-event", Component: CreateEvent },
       { path: "login", Component: Login },
       { path: "register", Component: Register },
     ],
