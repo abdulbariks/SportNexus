@@ -1,10 +1,14 @@
-import React from "react";
+import axios from "axios";
+import React, { use } from "react";
 import { useLoaderData } from "react-router";
+import Swal from "sweetalert2";
+import { AuthContext } from "../contexts/AuthContext";
 
 const EventDetails = () => {
+  const { user } = use(AuthContext);
   const eventDetails = useLoaderData();
   const {
-    _id,
+    _id: bookingId,
     eventName,
     location,
     date,
@@ -13,6 +17,51 @@ const EventDetails = () => {
     creatorName,
     creatorEmail,
   } = eventDetails;
+
+  const handleBookingsEvents = (e) => {
+    e.preventDefault();
+
+    if (creatorEmail === user.email) {
+      return Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "You are not available this Event ",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+
+    const booking = {
+      bookingId,
+      applicant: user.email,
+    };
+
+    axios
+      .post("http://localhost:3000/bookings", booking)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your booking has been submitted",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Already Booked this Event ",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
+  };
+
   return (
     <div className="max-w-2xl px-6 py-16 mx-auto space-y-12">
       <article className="space-y-8 bg-gray-100 text-gray-900">
@@ -41,13 +90,14 @@ const EventDetails = () => {
       </article>
       <div>
         <div className="flex flex-wrap py-6 gap-2 border-t border-dashed border-gray-600">
-          <a
+          <button
+            onClick={handleBookingsEvents}
             rel="noopener noreferrer"
             href="#"
             className="px-3 py-1 rounded-sm hover:underline bg-violet-600 text-gray-50"
           >
             Book Now
-          </a>
+          </button>
         </div>
       </div>
     </div>

@@ -10,6 +10,7 @@ import Loading from "../components/Loading";
 import EventDetails from "../pages/EventDetails";
 import ManageEvents from "../pages/ManageEvents";
 import UpdateEvent from "../pages/UpdateEvent";
+import MyBookings from "../pages/MyBookings";
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +37,13 @@ export const router = createBrowserRouter([
         hydrateFallbackElement: <Loading></Loading>,
         loader: () => fetch("http://localhost:3000/events"),
         Component: ManageEvents,
+      },
+
+      {
+        path: "my-bookings",
+        hydrateFallbackElement: <Loading></Loading>,
+        loader: () => fetch("http://localhost:3000/events"),
+        Component: MyBookings,
       },
 
       { path: "create-event", Component: CreateEvent },

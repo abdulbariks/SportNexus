@@ -66,12 +66,7 @@ const CreateEvent = () => {
             <div className="grid grid-cols-2 gap-5">
               <div>
                 <label className="label">Event Date</label>
-                <input
-                  type="text"
-                  name="date"
-                  className="input w-full"
-                  placeholder="Event Date"
-                />
+                <input type="date" name="date" className="input w-full" />
               </div>
               <div>
                 <label className="label">Event Type</label>
