@@ -32,7 +32,7 @@ const Navbar = () => {
       });
   };
   return (
-    <div className="bg-base-100 shadow-sm">
+    <div className="bg-[#98d0ec] shadow-sm">
       <div className="navbar w-11/12 mx-auto ">
         <div className="navbar-start">
           <div className="dropdown">
@@ -63,23 +63,34 @@ const Navbar = () => {
               <li>
                 <NavLink to={"/events"}>Events</NavLink>
               </li>
-              <li>
-                <NavLink to={"/create-event"}>Create Event</NavLink>
-              </li>
-              <li>
-                <a>Profile</a>
-                <ul className="p-2">
+              {user ? (
+                <>
                   <li>
-                    <NavLink to={"/book-event"}>Book Event</NavLink>
+                    <NavLink to={"/create-event"}>Create Event</NavLink>
                   </li>
                   <li>
-                    <NavLink to={"/my-bookings"}>My Bookings</NavLink>
+                    <div className="dropdown dropdown-end">
+                      <div tabIndex={0}>Profile</div>
+                      <ul
+                        tabIndex={0}
+                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                      >
+                        <li>
+                          <NavLink to={"/book-event"}>Book Event</NavLink>
+                        </li>
+                        <li>
+                          <NavLink to={"/my-bookings"}>My Bookings</NavLink>
+                        </li>
+                        <li>
+                          <NavLink to={"/manage-events"}>Manage Events</NavLink>
+                        </li>
+                      </ul>
+                    </div>
                   </li>
-                  <li>
-                    <NavLink to={"/manage-events"}>Manage Events</NavLink>
-                  </li>
-                </ul>
-              </li>
+                </>
+              ) : (
+                ""
+              )}
             </ul>
           </div>
           <div className="flex gap-2">
@@ -99,25 +110,34 @@ const Navbar = () => {
             <li>
               <NavLink to={"/events"}>Events</NavLink>
             </li>
-            <li>
-              <NavLink to={"/create-event"}>Create Event</NavLink>
-            </li>
-            <li>
-              <details>
-                <summary>Profile</summary>
-                <ul className="p-2">
-                  <li>
-                    <NavLink to={"/book-event"}>Book Event</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to={"/my-bookings"}>My Bookings</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to={"/manage-events"}>Manage Events</NavLink>
-                  </li>
-                </ul>
-              </details>
-            </li>
+            {user ? (
+              <>
+                <li>
+                  <NavLink to={"/create-event"}>Create Event</NavLink>
+                </li>
+                <li>
+                  <div className="dropdown dropdown-end">
+                    <div tabIndex={0}>Profile</div>
+                    <ul
+                      tabIndex={0}
+                      className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                    >
+                      <li>
+                        <NavLink to={"/book-event"}>Book Event</NavLink>
+                      </li>
+                      <li>
+                        <NavLink to={"/my-bookings"}>My Bookings</NavLink>
+                      </li>
+                      <li>
+                        <NavLink to={"/manage-events"}>Manage Events</NavLink>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </>
+            ) : (
+              ""
+            )}
           </ul>
         </div>
         <div className="navbar-end gap-5">

@@ -52,13 +52,9 @@ const ManageEvents = () => {
         </thead>
         <tbody>
           {/* row 1 */}
-          {allEvents.map((event) => (
+          {allEvents.map((event, index) => (
             <tr key={event._id}>
-              <th>
-                <label>
-                  <input type="checkbox" className="checkbox" />
-                </label>
-              </th>
+              <th>{index + 1}</th>
               <td>
                 <h3 className="font-bold">{event.eventName}</h3>
               </td>

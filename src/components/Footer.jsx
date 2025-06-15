@@ -6,7 +6,7 @@ import { NavLink } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="footer footer-horizontal footer-center bg-base-100 p-10">
+    <footer className="footer footer-horizontal footer-center bg-[#98d0ec] p-10">
       <aside>
         <FcSportsMode size={48} />
         <p className="font-bold">SportNexus</p>
