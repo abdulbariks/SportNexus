@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -7,8 +7,26 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import axios from "axios";
 
 const Banner = () => {
+  const [events, setEvents] = useState([]);
+
+  console.log(events);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const res = await axios.get("http://localhost:3000/featured");
+        setEvents(res.data);
+      } catch (err) {
+        console.error("Error fetching events:", err);
+      }
+    };
+
+    fetchEvents();
+  }, []);
+
   return (
     <div className="">
       <Swiper
@@ -25,48 +43,29 @@ const Banner = () => {
         modules={[Autoplay, Pagination, Navigation]}
         className="flex "
       >
-        <SwiperSlide>
-          <img
-            className="w-full h-[500px]"
-            src="https://c8.alamy.com/comp/GARNXE/soccer-england-soccer-clinic-marvin-lee-stadium-GARNXE.jpg"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="w-full h-[500px]"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNuoy_4MVDcpB6TF-18ubXAgy2oJHk0ZJru4Wv6w73iuyBlX8y5WyZ65tq6r7qwBf9JGc&usqp=CAU"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="w-full h-[500px]"
-            src="https://c8.alamy.com/compit/garnxe/calcio-inghilterra-soccer-clinica-marvin-lee-stadium-garnxe.jpg"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="w-full h-[500px]"
-            src="https://dornsife.usc.edu/news/wp-content/uploads/sites/7/2023/04/story-3499-768x432.jpg"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="w-full h-[500px]"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmlVa_cBS3j5XQRN4BD4_oDAJ50DeQHt3r-pJNkpQJXcwE0Th4SCdTMkJluHdL6qfpemo&usqp=CAU"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="w-full h-[500px]"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2ZeZBnYtTiAL56uMQGh2iRnfdpiPKx4h2yjkR5hiSW9JPrO1S65Q6GtGdqDm9lONQPpg&usqp=CAU"
-            alt=""
-          />
-        </SwiperSlide>
+        {events.map((event) => (
+          <SwiperSlide key={event._id}>
+            <div className="relative">
+              <img
+                src="https://i.ibb.co.com/dwpk1RjL/1622022426440.jpg"
+                alt="Slide 1"
+                className="w-full h-[450px]"
+              />
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <h3 className="text-center text-5xl font-bold">
+                  {event?.eventName}
+                </h3>
+                <p className="w-8/12 mx-auto text-center py-5 text-3xl font-bold">
+                  Curated tech products delivered monthly with exclusive
+                  features and savings.
+                </p>
+                <button className="btn bg-[#37b6f5] px-6 py-2">
+                  {event?.location}
+                </button>
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );
