@@ -4,12 +4,14 @@ import { Link, Navigate, useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { Eye, EyeOff } from "lucide-react";
 import useTitle from "../hooks/useTitle";
+import Animation from "../components/Animation";
 
 const Register = () => {
   useTitle("Sign Up | Room Lagbe");
   const { createUser, user, setUser, updateUser } = use(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
+  console.log(user);
 
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -83,89 +85,94 @@ const Register = () => {
     setShowPassword(!showPassword);
   };
   return (
-    <div className="w-full mx-auto max-w-md p-4 rounded-md shadow sm:p-8 bg-[#EDC9AF] mb-1 text-gray-800">
-      <h2 className="mb-3 text-3xl font-semibold text-center">
-        SignUp Your Account
-      </h2>
-      <p className="text-sm text-center text-gray-600">
-        Have Account?
-        <Link to={"/login"} className="focus:underline hover:underline">
-          {" "}
-          LogIn Here
-        </Link>
-      </p>
-      <form onSubmit={handleUserSignup} className="space-y-8">
-        <div className="space-y-4">
-          <div className="space-y-2">
-            <label htmlFor="email" className="block text-sm">
-              User Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              required
-              placeholder="User Name"
-              className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600"
-            />
-          </div>
-          <div className="space-y-2">
-            <label htmlFor="email" className="block text-sm">
-              Email address
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              required
-              placeholder="Email address"
-              className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600"
-            />
-          </div>
-          <div className="space-y-2">
-            <label htmlFor="email" className="block text-sm">
-              photoURL
-            </label>
-            <input
-              type="text"
-              name="photoURL"
-              id="photoURL"
-              required
-              placeholder="photoURL"
-              className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600"
-            />
-          </div>
-          <div className="space-y-2">
-            <div className="flex justify-between">
-              <label htmlFor="password" className="text-sm">
-                Password
+    <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-5 my-5">
+      <div className="w-full rounded-md shadow sm:p-8 bg-[#98d0ec] mb-1 text-gray-800">
+        <h2 className="mb-3 text-3xl font-semibold text-center">
+          SignUp Your Account
+        </h2>
+        <p className="text-sm text-center text-gray-600">
+          Have Account?
+          <Link to={"/login"} className="focus:underline hover:underline">
+            {" "}
+            LogIn Here
+          </Link>
+        </p>
+        <form onSubmit={handleUserSignup} className="space-y-8">
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <label htmlFor="email" className="block text-sm">
+                User Name
               </label>
-            </div>
-            <div className="relative">
               <input
-                type={showPassword ? "text" : "password"}
-                name="password"
-                id="password"
-                placeholder="Password"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 dark:text-gray-800 focus:border-violet-600"
+                type="text"
+                name="name"
+                id="name"
+                required
+                placeholder="User Name"
+                className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600"
               />
-              <span
-                className="absolute right-3 top-3 cursor-pointer text-gray-500"
-                onClick={togglePasswordVisibility}
-              >
-                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-              </span>
             </div>
+            <div className="space-y-2">
+              <label htmlFor="email" className="block text-sm">
+                Email address
+              </label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                required
+                placeholder="Email address"
+                className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600"
+              />
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="email" className="block text-sm">
+                photoURL
+              </label>
+              <input
+                type="text"
+                name="photoURL"
+                id="photoURL"
+                required
+                placeholder="photoURL"
+                className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600"
+              />
+            </div>
+            <div className="space-y-2">
+              <div className="flex justify-between">
+                <label htmlFor="password" className="text-sm">
+                  Password
+                </label>
+              </div>
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  id="password"
+                  placeholder="Password"
+                  className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 dark:text-gray-800 focus:border-violet-600"
+                />
+                <span
+                  className="absolute right-3 top-3 cursor-pointer text-gray-500"
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </span>
+              </div>
+            </div>
+            <p>{passwordError}</p>
           </div>
-          <p>{passwordError}</p>
-        </div>
-        <button
-          type="submit"
-          className="w-full px-8 py-3 font-semibold rounded-md bg-[#d17331] text-gray-50"
-        >
-          Sign Up
-        </button>
-      </form>
+          <button
+            type="submit"
+            className="w-full px-8 py-3 font-semibold rounded-md bg-[#37b6f5] text-gray-50"
+          >
+            Sign Up
+          </button>
+        </form>
+      </div>
+      <div className="w-full h-full rounded-md  bg-[#98d0ec] mb-1 text-gray-800">
+        <Animation></Animation>
+      </div>
     </div>
   );
 };
