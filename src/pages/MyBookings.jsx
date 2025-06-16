@@ -1,39 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { useLoaderData } from "react-router";
+import React, { use, useState } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../contexts/AuthContext";
+import Loading from "../components/Loading";
+import { useLoaderData } from "react-router";
 
 const MyBookings = () => {
-  const allEvents = useLoaderData();
+  const { user, loading } = use(AuthContext);
+  const allBookings = useLoaderData();
 
-  const [bookings, setBookings] = useState([]);
+  const [bookings, setBookings] = useState(allBookings);
   console.log(bookings);
 
-  const bookedEventIds = [...new Set(bookings?.map((b) => b.bookingId))];
-  console.log(bookedEventIds);
-  const bookedEvents = allEvents?.filter((event) =>
-    bookedEventIds?.includes(event._id)
-  );
-  console.log(bookedEvents);
+  if (loading) {
+    return <Loading />;
+  }
 
-  useEffect(() => {
-    fetch("http://localhost:3000/bookings")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setBookings(data);
-      })
-      .catch((err) => {
-        console.error("Fetch error:", err.message);
-      });
-  }, []);
+  const myBookings = bookings.filter(
+    (booking) => booking?.email === user?.email
+  );
 
   const handleBookedEvent = (_id) => {
-    const deleteId = bookings
-      ?.filter((booking) => booking.bookingId === _id)
-      .map((booking) => booking._id);
-    console.log(deleteId);
-
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to delete this!",
@@ -46,7 +32,7 @@ const MyBookings = () => {
       // console.log(result.isConfirmed);
       if (result.isConfirmed) {
         // start deleting the event
-        fetch(`http://localhost:3000/bookings/${deleteId}`, {
+        fetch(`http://localhost:3000/bookings/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -57,14 +43,19 @@ const MyBookings = () => {
                 text: "Your Event has been deleted.",
                 icon: "success",
               });
-              setBookings(data);
+              // Remove the Events from the State
+              const remainingRoommate = bookings.filter(
+                (roommate) => roommate._id !== _id
+              );
+              setBookings(remainingRoommate);
             }
           });
       }
     });
   };
+
   return (
-    <div className="overflow-x-auto">
+    <div className="w-11/12 mx-auto my-5 overflow-x-auto">
       <table className="table">
         {/* head */}
         <thead>
@@ -79,7 +70,7 @@ const MyBookings = () => {
         </thead>
         <tbody>
           {/* row 1 */}
-          {bookedEvents?.map((event, index) => (
+          {myBookings?.map((event, index) => (
             <tr key={event._id}>
               <th>{index + 1}</th>
               <td>

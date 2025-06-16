@@ -25,7 +25,7 @@ const FeaturedEvents = () => {
       <h3 className="text-center pb-5 text-3xl font-bold">Featured Events</h3>
       <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
         {events.map((event) => (
-          <div className="card bg-[#98d0ec] shadow-sm">
+          <div key={event?._id} className="card bg-[#98d0ec] shadow-sm">
             <figure className="px-10 pt-10">
               <img src={event?.imgUrl} alt="Shoes" className="rounded-xl" />
             </figure>

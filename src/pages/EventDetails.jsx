@@ -8,7 +8,7 @@ const EventDetails = () => {
   const { user } = use(AuthContext);
   const eventDetails = useLoaderData();
   const {
-    _id: bookingId,
+    // _id: bookingId,
     eventName,
     location,
     date,
@@ -16,6 +16,7 @@ const EventDetails = () => {
     description,
     creatorName,
     creatorEmail,
+    imgUrl,
   } = eventDetails;
 
   const handleBookingsEvents = (e) => {
@@ -32,8 +33,14 @@ const EventDetails = () => {
     }
 
     const booking = {
-      bookingId,
-      applicant: user.email,
+      eventName,
+      location,
+      date,
+      eventType,
+      description,
+      creatorName,
+      email: user.email,
+      imgUrl,
     };
 
     axios
@@ -63,41 +70,23 @@ const EventDetails = () => {
   };
 
   return (
-    <div className="max-w-2xl px-6 py-16 mx-auto space-y-12">
-      <article className="space-y-8 bg-gray-100 text-gray-900">
-        <div className="space-y-6">
-          <h1 className="text-4xl font-bold md:tracking-tight md:text-5xl">
-            {eventName}
-          </h1>
-          <div className="flex flex-col items-start justify-between w-full md:flex-row md:items-center text-gray-600">
-            <div className="flex items-center md:space-x-2">
-              <img
-                src="https://source.unsplash.com/75x75/?portrait"
-                alt=""
-                className="w-4 h-4 border rounded-full bg-gray-500 border-gray-300"
-              />
-              <p className="text-sm">{date}</p>
+    <div className="w-11/12 mx-auto my-5">
+      <div className="hero bg-[#98d0ec] min-h-screen">
+        <div className="hero-content flex-col lg:flex-row-reverse">
+          <img src={imgUrl} className="max-w-sm rounded-lg shadow-2xl" />
+          <div>
+            <h1 className="text-5xl font-bold">{eventName}</h1>
+            <div className="flex gap-5 my-5">
+              <h3>Date: {date}</h3>
+              <h3>Location: {location}</h3>
             </div>
-            <p className="flex-shrink-0 mt-3 text-sm md:mt-0">{creatorName}</p>
+            <button className="btn bg-[#739baf]">{eventType}</button>
+            <h3 className="font-bold mt-5">Event Creator: {creatorName}</h3>
+            <p className="py-6 w-8/12 ">{description}</p>
+            <button onClick={handleBookingsEvents} className="btn bg-[#37b6f5]">
+              Booked
+            </button>
           </div>
-        </div>
-        <div className="text-gray-800">
-          {location}
-          {eventType}
-          <p className="">{creatorEmail}</p>
-          <p>{description}</p>
-        </div>
-      </article>
-      <div>
-        <div className="flex flex-wrap py-6 gap-2 border-t border-dashed border-gray-600">
-          <button
-            onClick={handleBookingsEvents}
-            rel="noopener noreferrer"
-            href="#"
-            className="px-3 py-1 rounded-sm hover:underline bg-violet-600 text-gray-50"
-          >
-            Book Now
-          </button>
         </div>
       </div>
     </div>

@@ -11,6 +11,7 @@ import EventDetails from "../pages/EventDetails";
 import ManageEvents from "../pages/ManageEvents";
 import UpdateEvent from "../pages/UpdateEvent";
 import MyBookings from "../pages/MyBookings";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -29,21 +30,33 @@ export const router = createBrowserRouter([
         hydrateFallbackElement: <Loading></Loading>,
         loader: ({ params }) =>
           fetch(`http://localhost:3000/events/${params.id}`),
-        Component: EventDetails,
+        element: (
+          <PrivateRoute>
+            <EventDetails></EventDetails>
+          </PrivateRoute>
+        ),
       },
 
       {
         path: "manage-events",
         hydrateFallbackElement: <Loading></Loading>,
         loader: () => fetch("http://localhost:3000/events"),
-        Component: ManageEvents,
+        element: (
+          <PrivateRoute>
+            <ManageEvents></ManageEvents>
+          </PrivateRoute>
+        ),
       },
 
       {
         path: "my-bookings",
         hydrateFallbackElement: <Loading></Loading>,
-        loader: () => fetch("http://localhost:3000/events"),
-        Component: MyBookings,
+        loader: () => fetch("http://localhost:3000/bookings"),
+        element: (
+          <PrivateRoute>
+            <MyBookings></MyBookings>
+          </PrivateRoute>
+        ),
       },
 
       { path: "create-event", Component: CreateEvent },
@@ -53,7 +66,11 @@ export const router = createBrowserRouter([
         hydrateFallbackElement: <Loading></Loading>,
         loader: ({ params }) =>
           fetch(`http://localhost:3000/events/${params.id}`),
-        Component: UpdateEvent,
+        element: (
+          <PrivateRoute>
+            <UpdateEvent></UpdateEvent>
+          </PrivateRoute>
+        ),
       },
       { path: "login", Component: Login },
       { path: "register", Component: Register },

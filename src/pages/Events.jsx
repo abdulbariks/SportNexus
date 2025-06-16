@@ -5,39 +5,27 @@ const Events = () => {
   const allEvents = useLoaderData();
 
   return (
-    <div>
-      {allEvents.map((event) => (
-        <div
-          key={event._id}
-          className="max-w-xs rounded-md shadow-md bg-gray-50 text-gray-800"
-        >
-          <img
-            src="https://source.unsplash.com/random/300x300/?2"
-            alt=""
-            className="object-cover object-center w-full rounded-t-md h-72 bg-gray-500"
-          />
-          <div className="flex flex-col justify-between p-6 space-y-8">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-semibold tracking-wide">
-                {event.eventName}
-              </h2>
-              <p className="text-gray-800">
-                Curabitur luctus erat nunc, sed ullamcorper erat vestibulum
-                eget.
-              </p>
+    <div className="my-5">
+      <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
+        {allEvents.map((event) => (
+          <div className="card bg-[#98d0ec] shadow-sm">
+            <figure className="px-10 pt-10">
+              <img src={event?.imgUrl} alt="Shoes" className="rounded-xl" />
+            </figure>
+            <div className="card-body items-center text-center">
+              <h2 className="card-title">{event?.eventName}</h2>
+              <p>Date : {event?.date}</p>
+              <p>Location : {event?.location}</p>
+              <div className="card-actions">
+                <Link to={`/event-details/${event?._id}`}>
+                  {" "}
+                  <button className="btn bg-[#37b6f5]">View Details</button>
+                </Link>
+              </div>
             </div>
-            <Link to={`/event-details/${event._id}`}>
-              {" "}
-              <button
-                type="submit"
-                className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-violet-600 text-gray-50"
-              >
-                Read more
-              </button>
-            </Link>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import React, { use } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import Swal from "sweetalert2";
 import useTitle from "../hooks/useTitle";
+import Animation from "../components/Animation";
 
 const CreateEvent = () => {
   useTitle("Event Create | SportNexus");
@@ -38,89 +39,100 @@ const CreateEvent = () => {
   };
 
   return (
-    <div className="w-11/12 mx-auto py-5">
-      <div className="text-center space-y-4 pb-5">
-        <h1 className="text-4xl">Create Event</h1>
+    <div className="w-11/12 mx-auto py-5 grid grid-cols-1 lg:grid-cols-2 gap-5">
+      <div className="w-full h-full rounded-md  bg-[#98d0ec] mb-1">
+        <Animation></Animation>
       </div>
-      <form onSubmit={handleCreateEvent}>
-        <div className="grid grid-cols-1 gap-6">
-          <fieldset className="fieldset bg-[#EDC9AF] border-base-300 rounded-box border p-4">
-            <label className="label">Event Name</label>
-            <input
-              type="text"
-              name="eventName"
-              className="input w-full"
-              placeholder="Event Name"
-            />
-          </fieldset>
-          <fieldset className="fieldset bg-[#EDC9AF] border-base-300 rounded-box border p-4">
-            <label className="label">Location</label>
-            <input
-              type="text"
-              name="location"
-              className="input w-full"
-              placeholder="Location"
-            />
-          </fieldset>
-          <fieldset className="fieldset bg-[#EDC9AF] border-base-300 rounded-box border p-4">
-            <div className="grid grid-cols-2 gap-5">
-              <div>
-                <label className="label">Event Date</label>
-                <input type="date" name="date" className="input w-full" />
+      <div className="bg-[#98d0ec] rounded-md">
+        <form onSubmit={handleCreateEvent}>
+          <div className="grid grid-cols-1 gap-2">
+            <fieldset className="fieldset p-2">
+              <label className="label">Event Name</label>
+              <input
+                type="text"
+                name="eventName"
+                className="input w-full"
+                placeholder="Event Name"
+              />
+            </fieldset>
+            <fieldset className="fieldset  p-2">
+              <label className="label">Location</label>
+              <input
+                type="text"
+                name="location"
+                className="input w-full"
+                placeholder="Location"
+              />
+            </fieldset>
+            <fieldset className="fieldset  p-2">
+              <div className="grid grid-cols-2 gap-5">
+                <div>
+                  <label className="label">Event Date</label>
+                  <input type="date" name="date" className="input w-full" />
+                </div>
+                <div>
+                  <label className="label">Event Type</label>
+                  <select
+                    name="eventType"
+                    defaultValue="Swimming"
+                    className="select w-full"
+                  >
+                    <option>Swimming</option>
+                    <option>Sprinting</option>
+                    <option>Long Jump</option>
+                    <option>High Jump</option>
+                    <option>Hurdle Race</option>
+                    <option>etc</option>
+                  </select>
+                </div>
               </div>
-              <div>
-                <label className="label">Event Type</label>
-                <select
-                  name="eventType"
-                  defaultValue="Swimming"
-                  className="select w-full"
-                >
-                  <option>Swimming</option>
-                  <option>Sprinting</option>
-                  <option>Long Jump</option>
-                  <option>High Jump</option>
-                  <option>Hurdle Race</option>
-                  <option>etc</option>
-                </select>
-              </div>
-            </div>
-          </fieldset>
-          <fieldset className="fieldset bg-[#EDC9AF] border-base-300 rounded-box border p-4">
-            <label className="label">Description</label>
-            <textarea
-              type="text"
-              name="description"
-              className="input textarea h-24 w-full"
-              placeholder="Description"
-            />
-          </fieldset>
+            </fieldset>
+            <fieldset className="fieldset  p-2">
+              <label className="label">Image Url</label>
+              <input
+                type="text"
+                name="imgUrl"
+                className="input w-full"
+                placeholder="imgUrl"
+              />
+            </fieldset>
+            <fieldset className="fieldset p-2">
+              <label className="label">Description</label>
+              <textarea
+                type="text"
+                name="description"
+                className="input textarea h-24 w-full"
+                placeholder="Description"
+              />
+            </fieldset>
 
-          <fieldset className="fieldset bg-[#EDC9AF] border-base-300 rounded-box border p-4">
-            <label className="label">Creator Name</label>
-            <input
-              type="text"
-              name="creatorName"
-              className="input w-full"
-              value={user?.displayName}
-            />
-          </fieldset>
-          <fieldset className="fieldset bg-[#EDC9AF] border-base-300 rounded-box border p-4">
-            <label className="label">Creator Email</label>
-            <input
-              type="text"
-              name="creatorEmail"
-              className="input w-full"
-              value={user?.email}
-            />
-          </fieldset>
-        </div>
+            <fieldset className="fieldset p-2">
+              <label className="label">Creator Name</label>
+              <input
+                type="text"
+                name="creatorName"
+                className="input w-full"
+                value={user?.displayName}
+              />
+            </fieldset>
+            <fieldset className="fieldset p-2">
+              <label className="label">Creator Email</label>
+              <input
+                type="text"
+                name="creatorEmail"
+                className="input w-full"
+                value={user?.email}
+              />
+            </fieldset>
+          </div>
 
-        <input
-          type="submit"
-          className="btn bg-[#d17331] w-full my-5"
-          value="Submit"
-        />
-      </form>
+          <input
+            type="submit"
+            className="btn bg-[#37b6f5] w-full my-5"
+            value="Submit"
+          />
+        </form>
+      </div>
     </div>
   );
 };
