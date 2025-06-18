@@ -1,7 +1,9 @@
 import React from "react";
 import { Link, useLoaderData } from "react-router";
+import useTitle from "../hooks/useTitle";
 
 const Events = () => {
+  useTitle("Events | SportNexus ");
   const allEvents = useLoaderData();
 
   return (

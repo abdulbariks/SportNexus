@@ -1,14 +1,17 @@
 import axios from "axios";
 import React, { use } from "react";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../contexts/AuthContext";
+import useTitle from "../hooks/useTitle";
 
 const EventDetails = () => {
+  useTitle("Event Details | SportNexus ");
+  const navigate = useNavigate();
   const { user } = use(AuthContext);
   const eventDetails = useLoaderData();
   const {
-    // _id: bookingId,
+    _id: bookingId,
     eventName,
     location,
     date,
@@ -33,6 +36,7 @@ const EventDetails = () => {
     }
 
     const booking = {
+      bookingId,
       eventName,
       location,
       date,
@@ -44,18 +48,17 @@ const EventDetails = () => {
     };
 
     axios
-      .post("http://localhost:3000/bookings", booking)
+      .post("https://b11a11-server-side-coral.vercel.app/bookings", booking)
       .then((res) => {
         console.log(res.data);
-        if (res.data.insertedId) {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Your booking has been submitted",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your booking has been submitted",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(`/my-bookings`);
       })
       .catch((error) => {
         console.log(error);
@@ -70,8 +73,9 @@ const EventDetails = () => {
   };
 
   return (
-    <div className="w-11/12 mx-auto my-5">
-      <div className="hero bg-[#98d0ec] min-h-screen">
+    <div className="w-11/12 mx-auto bg-[#98d0ec] my-5">
+      <h3 className="text-center py-10 text-5xl font-bold">Event Details</h3>
+      <div className="min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <img src={imgUrl} className="max-w-sm rounded-lg shadow-2xl" />
           <div>

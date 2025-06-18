@@ -10,7 +10,9 @@ const FeaturedEvents = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/featured");
+        const res = await axios.get(
+          "https://b11a11-server-side-coral.vercel.app/featured"
+        );
         setEvents(res.data);
       } catch (err) {
         console.error("Error fetching events:", err);

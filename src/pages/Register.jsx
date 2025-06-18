@@ -7,7 +7,7 @@ import useTitle from "../hooks/useTitle";
 import Animation from "../components/Animation";
 
 const Register = () => {
-  useTitle("Sign Up | Room Lagbe");
+  useTitle("Register | SportNexus");
   const { createUser, user, setUser, updateUser } = use(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();

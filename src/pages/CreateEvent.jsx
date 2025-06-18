@@ -17,7 +17,7 @@ const CreateEvent = () => {
     // console.log(newFormData);
 
     // Send Create Event Data to the Mongodb
-    fetch("http://localhost:3000/create-event", {
+    fetch("https://b11a11-server-side-coral.vercel.app/create-event", {
       method: "POST",
       headers: {
         "content-type": "application/json",

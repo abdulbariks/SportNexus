@@ -7,7 +7,7 @@ import useTitle from "../hooks/useTitle";
 import Animation from "../components/Animation";
 
 const Login = () => {
-  useTitle("Login | Room Lagbe");
+  useTitle("Login | SportNexus ");
   const navigate = useNavigate();
   const location = useLocation();
   const { googleLogin, logIn, user } = use(AuthContext);
