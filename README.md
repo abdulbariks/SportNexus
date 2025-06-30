@@ -35,8 +35,9 @@ SportNexus is a modern event management web application designed specifically fo
 
 ``bash
 git clone https://github.com/abdulbariks/SportNexus
+
 cd SportNexus
-cd client (for client side)
+
 
 ### 📦 2. Install Dependencies
 
