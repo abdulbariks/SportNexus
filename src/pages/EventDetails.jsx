@@ -4,6 +4,7 @@ import { useLoaderData, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../contexts/AuthContext";
 import useTitle from "../hooks/useTitle";
+import Error from "./Error";
 
 const EventDetails = () => {
   useTitle("Event Details | SportNexus ");
@@ -21,6 +22,10 @@ const EventDetails = () => {
     creatorEmail,
     imgUrl,
   } = eventDetails;
+
+  if (typeof eventDetails !== "object") {
+    return <Error></Error>;
+  }
 
   const handleBookingsEvents = (e) => {
     e.preventDefault();

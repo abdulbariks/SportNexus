@@ -49,7 +49,7 @@ const Banner = () => {
           <SwiperSlide key={event._id}>
             <div className="relative">
               <img
-                src="https://i.ibb.co.com/dwpk1RjL/1622022426440.jpg"
+                src={event?.imgUrl}
                 alt="Slide 1"
                 className="w-full h-[450px]"
               />
@@ -57,9 +57,8 @@ const Banner = () => {
                 <h3 className="text-center text-5xl font-bold">
                   {event?.eventName}
                 </h3>
-                <p className="w-8/12 mx-auto text-center py-5 text-3xl font-bold">
-                  Curated tech products delivered monthly with exclusive
-                  features and savings.
+                <p className="w-8/12 mx-auto text-center py-5 text-3xl font-light">
+                  {event?.description}
                 </p>
                 <button className="btn bg-[#37b6f5] px-6 py-2">
                   {event?.location}

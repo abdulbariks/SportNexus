@@ -29,7 +29,11 @@ const FeaturedEvents = () => {
         {events.map((event) => (
           <div key={event?._id} className="card bg-[#98d0ec] shadow-sm">
             <figure className="px-10 pt-10">
-              <img src={event?.imgUrl} alt="Shoes" className="rounded-xl" />
+              <img
+                src={event?.imgUrl}
+                alt="Shoes"
+                className="rounded-xl h-48"
+              />
             </figure>
             <div className="card-body items-center text-center">
               <h2 className="card-title">{event?.eventName}</h2>
