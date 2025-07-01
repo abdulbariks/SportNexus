@@ -63,6 +63,12 @@ const Navbar = () => {
               <li>
                 <NavLink to={"/events"}>Events</NavLink>
               </li>
+              <li>
+                <NavLink to={"/about"}>About</NavLink>
+              </li>
+              <li>
+                <NavLink to={"/contact"}>Contact</NavLink>
+              </li>
               {user ? (
                 <>
                   <li>
@@ -109,6 +115,12 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink to={"/events"}>Events</NavLink>
+            </li>
+            <li>
+              <NavLink to={"/about"}>About</NavLink>
+            </li>
+            <li>
+              <NavLink to={"/contact"}>Contact</NavLink>
             </li>
             {user ? (
               <>

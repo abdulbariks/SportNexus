@@ -13,6 +13,8 @@ import UpdateEvent from "../pages/UpdateEvent";
 import MyBookings from "../pages/MyBookings";
 import PrivateRoute from "./PrivateRoute";
 import BookEvent from "../pages/BookEvent";
+import About from "../pages/About";
+import Contact from "../pages/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +28,14 @@ export const router = createBrowserRouter([
         // loader: () =>
         //   fetch("https://b11a11-server-side-coral.vercel.app/events"),
         Component: Events,
+      },
+      {
+        path: "about",
+        Component: About,
+      },
+      {
+        path: "contact",
+        Component: Contact,
       },
       {
         path: "/event-details/:id",

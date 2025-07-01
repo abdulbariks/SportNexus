@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { FaLocationDot } from "react-icons/fa6";
 
 // Import Swiper styles
 import "swiper/css";
@@ -47,21 +48,21 @@ const Banner = () => {
       >
         {events.map((event) => (
           <SwiperSlide key={event._id}>
-            <div className="relative">
+            <div className="relative w-full h-[450px]">
               <img
                 src={event?.imgUrl}
                 alt="Slide 1"
-                className="w-full h-[450px]"
+                className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <h3 className="text-center text-5xl font-bold">
+                <h3 className="text-center my-10 text-5xl font-bold">
                   {event?.eventName}
                 </h3>
-                <p className="w-8/12 mx-auto text-center py-5 text-3xl font-light">
+                {/* <p className="w-8/12 mx-auto text-center py-5 text-3xl font-bold">
                   {event?.description}
-                </p>
+                </p> */}
                 <button className="btn bg-[#37b6f5] px-6 py-2">
-                  {event?.location}
+                  <FaLocationDot /> {event?.location}
                 </button>
               </div>
             </div>
