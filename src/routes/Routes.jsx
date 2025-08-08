@@ -24,9 +24,9 @@ export const router = createBrowserRouter([
       { index: true, Component: Home },
       {
         path: "events",
-        // hydrateFallbackElement: <Loading></Loading>,
-        // loader: () =>
-        //   fetch("https://b11a11-server-side-coral.vercel.app/events"),
+        hydrateFallbackElement: <Loading></Loading>,
+        loader: () =>
+          fetch("https://b11a11-server-side-coral.vercel.app/events"),
         Component: Events,
       },
       {
