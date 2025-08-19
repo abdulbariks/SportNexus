@@ -19,27 +19,27 @@ const About = () => {
         </p>
 
         <div className="grid gap-8 md:grid-cols-3">
-          <div className="bg-[#37b6f5] rounded-2xl shadow-md p-6 text-center hover:shadow-lg transition">
-            <h3 className="text-xl font-semibold  mb-3">
+          <div className="bg-[#37b6f5] rounded-2xl shadow-md p-6 text-center text-white hover:shadow-2xl hover:-translate-y-2 transition transform duration-300">
+            <h3 className="text-xl font-semibold mb-3">
               Seamless Event Management
             </h3>
-            <p className="">
+            <p>
               Create, schedule, and promote your sports events effortlessly.
               Manage participants, venues, and time with complete control.
             </p>
           </div>
 
-          <div className="bg-[#37b6f5] rounded-2xl shadow-md p-6 text-center hover:shadow-lg transition">
-            <h3 className="text-xl font-semibold  mb-3">Real-time Updates</h3>
-            <p className="">
+          <div className="bg-[#37b6f5] rounded-2xl shadow-md p-6 text-center text-white hover:shadow-2xl hover:-translate-y-2 transition transform duration-300">
+            <h3 className="text-xl font-semibold mb-3">Real-time Updates</h3>
+            <p>
               Stay informed with real-time updates, notifications, and match
               results. Never miss an important update again.
             </p>
           </div>
 
-          <div className="bg-[#37b6f5] rounded-2xl shadow-md p-6 text-center hover:shadow-lg transition">
-            <h3 className="text-xl font-semibold  mb-3">Community Driven</h3>
-            <p className="">
+          <div className="bg-[#37b6f5] rounded-2xl shadow-md p-6 text-center text-white hover:shadow-2xl hover:-translate-y-2 transition transform duration-300">
+            <h3 className="text-xl font-semibold mb-3">Community Driven</h3>
+            <p>
               Connect with fellow sports enthusiasts. Find teammates, track
               performance, and grow your sports network.
             </p>

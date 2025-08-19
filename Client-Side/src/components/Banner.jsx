@@ -48,20 +48,20 @@ const Banner = () => {
       >
         {events.map((event) => (
           <SwiperSlide key={event._id}>
-            <div className="relative w-full h-[450px]">
+            <div className="relative w-full h-screen">
               <img
                 src={event?.imgUrl}
                 alt="Slide 1"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <h3 className="text-center my-10 text-5xl font-bold">
+                <h3 className="text-center text-5xl font-bold text-[#37b6f5]">
                   {event?.eventName}
                 </h3>
-                {/* <p className="w-8/12 mx-auto text-center py-5 text-3xl font-bold">
+                <p className="w-8/12 mx-auto text-center py-5 text-3xl font-bold text-[#37b6f5]">
                   {event?.description}
-                </p> */}
-                <button className="btn bg-[#37b6f5] px-6 py-2">
+                </p>
+                <button className="btn bg-[#37b6f5] text-white px-6 py-2 flex items-center gap-2">
                   <FaLocationDot /> {event?.location}
                 </button>
               </div>
