@@ -31,7 +31,7 @@ const partners = [
 
 const SportsPartners = () => {
   return (
-    <div className="w-11/12 mx-auto py-10 bg-[#98d0ec] rounded-md">
+    <div className="w-11/12 mx-auto py-10">
       <h2 className="text-4xl font-bold mb-6 text-center">
         Our Sports Partners
       </h2>

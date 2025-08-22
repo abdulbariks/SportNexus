@@ -6,6 +6,7 @@ import About from "./About";
 import Contact from "./Contact";
 import SuccessEvents from "../components/SuccessEvents";
 import SportsPartners from "../components/SportsPartners";
+import FrequentlyAskedQuestions from "../components/FrequentlyAskedQuestions";
 
 const Home = () => {
   useTitle("Home | SportNexus ");
@@ -16,6 +17,7 @@ const Home = () => {
       <SuccessEvents />
       <SportsPartners />
       <About />
+      <FrequentlyAskedQuestions />
       <Contact />
     </div>
   );

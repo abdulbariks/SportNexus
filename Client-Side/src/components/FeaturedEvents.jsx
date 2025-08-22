@@ -24,7 +24,7 @@ const FeaturedEvents = () => {
 
   return (
     <div className="my-10">
-      <h3 className="text-center pb-5 text-3xl font-bold text-gray-800">
+      <h3 className="text-center pb-5 text-3xl font-bold dark:text-gray-800">
         Featured Events
       </h3>
 

@@ -1,12 +1,18 @@
-import React from "react";
+import React, { use } from "react";
 import { FaFacebook, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FcSportsMode } from "react-icons/fc";
 import { NavLink } from "react-router";
+import { AuthContext } from "../contexts/AuthContext";
 
 const Footer = () => {
+  const { darkMode } = use(AuthContext);
   return (
-    <footer className="footer footer-horizontal footer-center bg-[#98d0ec] p-10">
+    <footer
+      className={`footer footer-horizontal footer-center p-10 ${
+        darkMode ? "bg-black" : "bg-[#98d0ec]"
+      }`}
+    >
       <aside>
         <FcSportsMode size={48} />
         <p className="font-bold">SportNexus</p>

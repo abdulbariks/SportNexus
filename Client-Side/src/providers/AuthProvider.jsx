@@ -38,6 +38,7 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  const [darkMode, setDarkMode] = useState(false);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -57,6 +58,8 @@ const AuthProvider = ({ children }) => {
     createUser,
     updateUser,
     logIn,
+    darkMode,
+    setDarkMode,
   };
   return <AuthContext value={authData}>{children}</AuthContext>;
 };

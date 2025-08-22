@@ -4,7 +4,7 @@ import useTitle from "../hooks/useTitle";
 const About = () => {
   useTitle("About | SportNexus ");
   return (
-    <section className="w-11/12 mx-auto bg-[#98d0ec] my-10 rounded-md py-12 px-4 md:px-20">
+    <section className="w-11/12 mx-auto my-10 rounded-md py-12 px-4 md:px-20">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold text-center  mb-8">
           About SportNexus
